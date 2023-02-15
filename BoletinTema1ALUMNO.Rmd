@@ -76,10 +76,21 @@ library(MASS)
 library(robustbase)
 data("mammals")
 data("Animals2")
+
+
+
+commonAnimals <-intersect(rownames(mammals),rownames(Animals2))
+commonAnimals
+
+
 ```
 
 e. Usa setdiff para averiguar qué animales no están en ambos conjuntos. ¿Cuántos son ?. ¿Qué tipo
 de animales son?
+
+
+
+
 f. Determina las diferencia entre los animales que no aparecen en ambos conjuntos.
 
 

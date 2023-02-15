@@ -65,11 +65,19 @@ rownames(Animals2)
 rownames(mammals)
 colnames(Animals2)
 colnames(mammals)
-
+ 
 ```
 
 d. Usa la función intersect y almacena en la variable commonAnimals los aminales que aparezcan
 en ambos conjuntos
+
+```{r}
+library(MASS)
+library(robustbase)
+data("mammals")
+data("Animals2")
+```
+
 e. Usa setdiff para averiguar qué animales no están en ambos conjuntos. ¿Cuántos son ?. ¿Qué tipo
 de animales son?
 f. Determina las diferencia entre los animales que no aparecen en ambos conjuntos.

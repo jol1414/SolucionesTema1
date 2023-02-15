@@ -220,3 +220,17 @@ summary(Chile)
 ```
 
 
+
+
+5. Muchas pruebas estadísticas suponen que los datos siguen una distribución Gaussiana. Utiliza la
+aproximación visual proporcionada por qqPlot para determinar si podemos asumir que las variables
+HeadWt y VitC del conjunto cabbages verifican esta condición.
+
+
+```{r}
+qqplot(x = log(cabbages$HeadWt), y = log(cabbages$VitC))
+        
+# tal y como podemos ver, cumplen la condicion, es evidente si miras el grafico, los puntos sigen la progresion correcta
+
+```
+

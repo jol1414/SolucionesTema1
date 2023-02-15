@@ -111,6 +111,7 @@ f. Determina las diferencia entre los animales que no aparecen en ambos conjunto
 
 ```{r}
 
+# parecen ser los mismos animales pero con nombres ligeramente distintos
 
 ```
 

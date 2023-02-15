@@ -249,3 +249,82 @@ en el conjunto de datos cabbages.
 hist(cabbages$VitC[cabbages$Cult == unique(unique(cabbages$Cult))], ylab= "frec", xlab = "vitc")
 
 ```
+
+7. Un modelo sencillo para relacionar variables es la predicción lineal. En el siguiente ejemplo se utiliza el
+conjunto de datos whiteside, de la librería MASS. Esta aproximación propone un modelo que predice
+una variable a partir de otra. Una primera etapa para plantear esta aproximación sería representar
+ambas variables mediante un diagrama de dispersión (Gráfico XY) y determinar si la relación entre
+variables “parece” lineal. Si es así, podemos plantear un modelo lineal (en este caso según un factor),
+donde se aprecia claramente que existe una relación lineal entre las dos variables consideradas. Observa
+y ejecuta el siguiente código.
+
+```{r}
+
+
+library(MASS)
+
+
+
+#Diagrama de dispersión global.
+plot(whiteside$Temp, whiteside$Gas)
+#Diagrama de dispersión etiquetando según un factor.
+plot(whiteside$Temp, whiteside$Gas, pch=c(6,16)[whiteside$Insul])
+legend(x="topright",legend=c("Insul = Before","Insul = After"), pch=c(6,16))
+# Planteamos 2 modelos lineales, uno para los datos de cada factor
+Model1 <- lm(Gas ~ Temp, data = whiteside, subset = which(Insul == "Before"))
+Model2 <- lm(Gas ~ Temp, data = whiteside, subset = which(Insul == "After"))
+# Representamos las rectas correspondientes a cada modelo lineal
+abline(Model1, lty=2)
+abline(Model2)
+
+```
+
+a. Utiliza un procedimiento análogo para determinar si se aprecia una relación lineal entre los niveles de
+vitamina C, VitC en función del peso de la calabaza, HeadWt, en el conjunto de datos cabbages.
+
+```{r}
+plot(cabbages$VitC, cabbages$HeadWt, xlab = "vitc", ylab = "peso") 
+abline(lm(cabbages$HeadWt~cabbages$VitC))
+
+# no sabria decir con seguridad si lo sigue o si no, parece que sigue el abline pero no estoy muy seguro
+
+```
+
+b. Repite el apartado anterior, pero obteniendo un modelo para cada una de las dos variedades de calabaza,
+Cult. VerParámetros básicos plot.
+
+```{r}
+modelo_39 <- lm(HeadWt ~ VitC, data = cabbages, subset = which(Cult  == "c39"))
+
+modelo_39
+
+modelo_52 <- lm(HeadWt ~ VitC, data = cabbages, subset = which(Cult  == "c52"))
+
+modelo_52
+
+
+ 
+plot(cabbages$VitC, cabbages$HeadWt, ylab = "peso", xlab = "vitc",pch=c(6,16)[cabbages$Cult])
+ 
+# como podemos ver, es lo mismo que antes pero le hemos dado un modelo distinto a los dos tipos de calabaza
+ 
+
+```
+
+c. Usa summary con cada uno de los modelos obtenidos y observa Coefficients. Dado que hemos
+planteado un modelo y = mx+n, donde y = V itC y x = HeadW t. La función lm nos permite obtener
+(Intercept); n y la pendiente HeadWt; m (además de otros parámetros adicionales que evalúan la
+caracterísiticas del modelo). Observa que en todos los casos, la pendiene es negativa indicando que las
+calabazas de más peso contienen menos vitamina C. No te preocupes por el resto de parámetros del
+modelo, por el momento.
+
+
+
+
+```{r}
+summary(modelo_39)
+summary(modelo_52)
+
+# no tengo nada que añadir
+
+```
